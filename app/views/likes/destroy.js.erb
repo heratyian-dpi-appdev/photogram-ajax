@@ -1,0 +1,15 @@
+console.log("destroyed!!!!")
+
+<%# find the existing photo_id_likes element %>
+var existingLikes = $("#<%= dom_id(@like.photo) %>_likes")
+
+<%# render new likes element %>
+var updatedLikes = $("<%= j(render "photos/likes", photo: @like.photo) %>");
+
+<%# replace it with a new photo_id_likes element %>
+existingLikes.replaceWith(updatedLikes);
+
+<%# fa-beat-fade %>
+var icon = $("#<%= dom_id(@like.photo) %>_likes_icon");
+icon.addClass("fa-beat-fade");
+icon.css("--fa-animation-iteration-count", "1");
